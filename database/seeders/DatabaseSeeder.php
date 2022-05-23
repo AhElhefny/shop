@@ -9,6 +9,7 @@ use App\Models\Rate;
 use App\Models\Size;
 use App\Models\User;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class DatabaseSeeder extends Seeder
 {
@@ -18,7 +19,7 @@ class DatabaseSeeder extends Seeder
      * @return void
      */
     protected $category=['Dresses','Men\'s Dresses','Women\'s Dresses','Baby\'s Dresses','Shirts','Jeans','Swimwear','Sleepwear','Sportswear','Jumpsuits','Blazers','Jackets','Shoes'];
-    protected $size=['s','m','l','xl','2xl','3xl'];
+    protected $size=['S','M','L','XL','XXL','XXXL'];
     public function run()
     {
         Category::truncate();
@@ -44,6 +45,23 @@ class DatabaseSeeder extends Seeder
             Size::factory()->create([
                 'size' => $this->size[$key],
             ]);
+        }
+
+        for ($i=0 ; $i<20;$i++){
+            DB::table('productcolor')->insert(array(
+                array('product_id'=>rand(1,20),'color_id'=>rand(1,10))
+            ));
+            DB::table('productrate')->insert(array(
+                array('product_id'=>rand(1,20),'rate_id'=>rand(1,5))
+            ));
+            DB::table('productsize')->insert(array(
+                array('product_id'=>rand(1,20),'size_id'=>rand(1,6))
+            ));
+            DB::table('productuserrates')->insert(array(
+                array('productrate_id'=>rand(1,20),'user_id'=>rand(1,10))
+            ));
+
+
         }
 
     }

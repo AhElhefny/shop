@@ -14,6 +14,7 @@ class ProductColorTable extends Migration
     public function up()
     {
         Schema::create('ProductColor', function (Blueprint $table) {
+            $table->id();
             $table->unsignedInteger('product_id');
             $table->foreign('product_id')->references('id')->on('products');
             $table->unsignedInteger('color_id');

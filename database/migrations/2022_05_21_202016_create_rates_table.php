@@ -13,7 +13,7 @@ class CreateRatesTable extends Migration
      */
     public function up()
     {
-        Schema::create('rates.blade.php', function (Blueprint $table) {
+        Schema::create('rates', function (Blueprint $table) {
             $table->id();
             $table->tinyInteger('amount')->nullable();
             $table->timestamps();

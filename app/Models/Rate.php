@@ -13,4 +13,8 @@ class Rate extends Model
     public function products(){
         return $this->belongsToMany(Product::class,'productrate');
     }
+
+    public function users(){
+        return $this->belongsToMany(User::class,'productuserrates');
+    }
 }

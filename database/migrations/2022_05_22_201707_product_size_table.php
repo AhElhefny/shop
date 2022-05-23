@@ -14,6 +14,7 @@ class ProductSizeTable extends Migration
     public function up()
     {
         Schema::create('productSize',function (Blueprint $table){
+            $table->id();
             $table->unsignedInteger('product_id');
             $table->foreign('product_id')->references('id')->on('products');
             $table->unsignedInteger('size_id');

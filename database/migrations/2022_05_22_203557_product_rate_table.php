@@ -14,10 +14,12 @@ class ProductRateTable extends Migration
     public function up()
     {
         Schema::create('productRate',function (Blueprint $table){
+            $table->id();
             $table->unsignedInteger('product_id');
             $table->foreign('product_id')->references('id')->on('products');
             $table->unsignedInteger('rate_id');
-            $table->foreign('product_id')->references('id')->on('products');
+            $table->foreign('rate_id')->references('id')->on('rates');
+            $table->text('review')->nullable();
             $table->timestamps();
         });
     }
