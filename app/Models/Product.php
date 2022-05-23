@@ -11,6 +11,16 @@ class Product extends Model
     protected $guarded=[];
     protected $with=['category'];
 
+    public function scopeFilter($query,array $filter){
+        $query->when($filter['Latest']??false ,function ($query){
+            $query->orderBy('id','DESC');
+        })->when($filter['Popularity']?? false,function($query){
+            $query->where('id',18);
+        })->when($filter['Best Rating']??false,function ($query){
+            $query->where('id',8);
+        });
+    }
+
     public function category(){
        return $this->belongsTo(Category::class);
     }

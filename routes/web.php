@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\IndexController;
+use App\Http\Controllers\LoginUserController;
 use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
 
@@ -14,9 +16,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [ProductController::class,'index']);
+Route::get('/', [IndexController::class,'index']);
 Route::view('cart','cart');
 Route::view('contact','contact');
-Route::view('detail','detail');
 Route::view('checkout','checkout');
-Route::view('shop','shop');
+
+Route::get('shop',[ProductController::class,'index']);
+Route::get('product/detail/{product}',[ProductController::class,'show']);
+
+Route::post('login',[LoginUserController::class,'login']);
+Route::post('logout',[LoginUserController::class,'destroy'])->middleware('auth');

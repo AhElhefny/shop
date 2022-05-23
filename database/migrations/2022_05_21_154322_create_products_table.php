@@ -25,7 +25,7 @@ class CreateProductsTable extends Migration
             $table->foreign('category_id')->references('id')->on('categories');
 
 //            $table->unsignedBigInteger('rate_id');
-//            $table->foreign('rate_id')->references('id')->on('rates');
+//            $table->foreign('rate_id')->references('id')->on('rates.blade.php');
 //
 //            $table->unsignedBigInteger('color_id');
 //            $table->foreign('color_id')->references('id')->on('colors');

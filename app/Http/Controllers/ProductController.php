@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\Product;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -14,9 +15,21 @@ class ProductController extends Controller
      */
     public function index()
     {
-        return view('index',[
-            'allCategories' => Category::all(),
-            ]);
+        switch (\request('filter')){
+            case ('Latest'):
+                $all=Product::orderBy('id','DESC')->simplePaginate(9)->withQueryString();
+                break;
+            case ('Popularity'):
+                $all=Product::orderBy('id','DESC')->simplePaginate(3)->withQueryString();
+                break;
+            case ('Best Rating'):
+                $all=Product::orderBy('id','DESC')->simplePaginate(5)->withQueryString();
+                break;
+            default:
+                $all=Product::orderBy('id','DESC')->simplePaginate(10)->withQueryString();
+        }
+//        $all=Product::filter(request(['Latest','Popularity','Best Rating']))->simplePaginate(9)->withQueryString();
+        return view('shop',['allProducts'=> $all]);
     }
 
     /**
@@ -46,9 +59,9 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Product $product)
     {
-        //
+        return view('detail',['product'=>$product]);
     }
 
     /**

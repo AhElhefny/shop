@@ -24,8 +24,24 @@
                         <a href="/contact" class="nav-item nav-link">Contact</a>
                     </div>
                     <div class="navbar-nav ml-auto py-0">
-                        <a href="" class="nav-item nav-link">Login</a>
-                        <a href="" class="nav-item nav-link">Register</a>
+                        @guest
+                        <ul class="nav navbar-nav navbar-right">
+                            <li data-toggle="modal" data-target="#mydaftar"><a href="#" class="nav-item nav-link"><span class="fas fa-sign-in-alt"></span> Register</a></li>
+                            <li data-toggle="modal" data-target="#mylogin"><a href="#" class="nav-item nav-link"><span class="fa fa-home"></span> Login</a></li>
+                        </ul>
+                        @endguest
+                        @auth
+                            <div class="dropdown">
+                                <button class="dropbtn"><i class="fa fa-user"></i></button>
+                                <div class="dropdown-content">
+                                    <a class="text-xs font-bold uppercase" href="#">Welcome {{auth()->user()->name}}</a>
+                                    <a class="text-xs font-bold uppercase"><Form action="{{url('/logout')}}" method="post" enctype="multipart/form-data">
+                                        @csrf
+                                        <button type="submit" class="btn"><i class="fas fa-sign-out-alt" aria-hidden="true"></i>  LOG OUT</button>
+                                    </Form></a>
+                                </div>
+                            </div>
+                        @endauth
                     </div>
                 </div>
             </nav>
