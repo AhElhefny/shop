@@ -10,14 +10,17 @@ class Product extends Model
     use HasFactory;
     protected $guarded=[];
     protected $with=['category'];
-
     public function scopeFilter($query,array $filter){
-        $query->when($filter['filter']==='Latest'??false ,function ($query){
+        $query->when($filter['Latest']??false ,function ($query){
             $query->orderBy('id','DESC');
-        })->when($filter['filter']==='Popularity'?? false,function($query){
+        })->when($filter['Popularity']?? false,function($query){
             $query->where('id',18);
-        })->when($filter['filter']==='Best Rating'??false,function ($query){
+        })->when($filter['BestRating']??false,function ($query){
             $query->where('id',8);
+        })->when($filter['category']??false,function ($query,$category){
+           $query->where('category_id',$category);
+        })->when($filter['season']??false,function ($query,$season){
+            $query->where('season',$season);
         });
     }
 
@@ -39,5 +42,14 @@ class Product extends Model
 
     public function users(){
         return $this->belongsToMany(User::class,'favourites');
+    }
+
+    public function sumRate(){
+        $sum=0;
+        return array_sum($this->rates->map(function ($i)use ($sum){
+             $sum +=$i->amount;
+             return $sum/count($this->rates);
+        })->toArray());
+
     }
 }

@@ -15,7 +15,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $all=Product::filter(request(['filter']))->simplePaginate(9)->withQueryString();
+        $all=Product::filter(request(['Latest','Popularity','BestRating','category','season']))->simplePaginate(9)->withQueryString();
         return view('shop',['allProducts'=> $all]);
     }
 

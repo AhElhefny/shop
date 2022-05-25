@@ -16,9 +16,9 @@
                 Sort by
             </button>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="triggerId">
-                <a class="dropdown-item" href="?filter=Latest">Latest</a>
-                <a class="dropdown-item" href="?filter=Popularity">Popularity</a>
-                <a class="dropdown-item" href="?filter=Best Rating">Best Rating</a>
+                <a class="dropdown-item" href="?Latest=filter&{{http_build_query(request()->except(['Latest','page','Popularity','BestRating']))}}">Latest</a>
+                <a class="dropdown-item" href="?Popularity=filter&{{http_build_query(request()->except(['Latest','page','Popularity','BestRating']))}}">Popularity</a>
+                <a class="dropdown-item" href="?BestRating=filter&{{http_build_query(request()->except(['Latest','page','Popularity','BestRating']))}}">Best Rating</a>
             </div>
         </div>
     </div>

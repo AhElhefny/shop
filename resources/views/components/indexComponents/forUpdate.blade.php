@@ -23,24 +23,32 @@
 <script>
     $("#up2DateForm").submit(function (e){
         e.preventDefault();
-        let _token=$("input[name=_token]").val();
         let email=$("#email").val();
         $.ajax({
             url:"{{route('4Update')}}",
             type:"POST",
             data:{
-                _token:_token,
+                _token:"{{csrf_token()}}",
                 email:email,
             },
             success:function (){
-                $("#up2DateForm")[0].reset();
-                alert('successfully sent E-Mail');
+                $("#email").val('');
+                swalFire('Success','Email Sent Successfully!','success')
             },
             error:function (xhr){
-                alert(xhr.responseJSON.errors.email[0]);
-                $("#up2DateForm")[0].reset();
+                swalFire('warning',xhr.responseJSON.errors.email[0],'Warning')
+                $("#email").val('');
             }
         });
 
     });
+
+    function swalFire(icon,text,title = 'Success'){
+        Swal.fire({
+            title: title,
+            text: text,
+            icon: icon,
+            confirmButtonText: 'Ok'
+        })
+    }
 </script>

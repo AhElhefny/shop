@@ -15,13 +15,13 @@
                             <div class="dropdown-menu position-absolute bg-secondary border-0 rounded-0 w-100 m-0">
                                 @for( $i = 0 ; $i < $allCategories->count() ; $i++)
                                     @if($c->id === $allCategories[$i]->parent)
-                                        <a href="{{$allCategories[$i]->id}}" class="dropdown-item">{{$allCategories[$i]->name }}</a>
+                                        <a href="/shop?category={{$allCategories[$i]->id}}&{{http_build_query(request()->except(['category','page']))}}" class="dropdown-item">{{$allCategories[$i]->name }}</a>
                                     @endif
                                @endfor
                             </div>
                     </div>
                 @elseif($c->parent === 0 && $hasChild==="false")
-                    <a href="{{$c->id}}" class="nav-item nav-link">{{$c->name}}</a>
+                    <a href="/shop?category={{$c->id}}&{{http_build_query(request()->except(['category','page']))}}" class="nav-item nav-link">{{$c->name}}</a>
                 @endif
             @endforeach
         </div>

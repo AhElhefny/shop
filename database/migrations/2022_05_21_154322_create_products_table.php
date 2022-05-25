@@ -20,6 +20,9 @@ class CreateProductsTable extends Migration
             $table->string('image')->nullable();
             $table->decimal('price')->nullable();
             $table->integer('amount')->nullable();
+            $table->string('season')->default('winter')->nullable();
+            $table->integer('offers')->default(0)->nullable();
+            $table->boolean('haveSeason')->default(0)->nullable();
 
             $table->unsignedBigInteger('category_id');
             $table->foreign('category_id')->references('id')->on('categories');
