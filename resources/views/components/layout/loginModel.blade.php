@@ -14,22 +14,26 @@
                     @csrf
                     <div class="form-group">
                         <label for="exampleInputEmail1">E-Mail</label>
-                        <input type="text" class="form-control rounded" name="email" id="username" placeholder="Username">
+                        <input type="text" class="form-control rounded" value="{{old('email'),}}" name="email" id="username" placeholder="Username">
                     </div>
+                    @error('email')
+                    <p class="text-danger">{{$message}}</p>
+                    @enderror
                     <div class="form-group">
                         <label for="exampleInputPassword1">Password</label>
                         <input type="password" class="form-control rounded" name="password" id="exampleInputPassword1" placeholder="Password">
                     </div>
-                    @if($errors->any())
-                        @foreach($errors as $e)
-                            <p class="text-danger">{{$e->message}}</p>
-                        @endforeach
-                    @endif
+                    @error('password')
+                    <p class="text-danger">{{$message}}</p>
+                    @enderror
                     <div class="modal-footer">
                         <button type="submit" class="btn btn-info btnrl" >Login</button>
                         <button type="button" class="btn btn-secondary btnrl" data-dismiss="modal">Close</button>
                     </div>
                 </form>
+                @error('login')
+                <p class="text-danger">{{$message}}</p>
+                @enderror
             </div>
         </div>
     </div>

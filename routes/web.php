@@ -2,7 +2,9 @@
 
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\LoginUserController;
+use App\Http\Controllers\MailForUpdateController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\RegisterUserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -24,5 +26,8 @@ Route::view('checkout','checkout');
 Route::get('shop',[ProductController::class,'index']);
 Route::get('product/detail/{product}',[ProductController::class,'show']);
 
+Route::post('signUp',[RegisterUserController::class,'register']);
 Route::post('login',[LoginUserController::class,'login']);
 Route::post('logout',[LoginUserController::class,'destroy'])->middleware('auth');
+
+Route::post('mailForUpdate',[MailForUpdateController::class,'storeMailForUpdate'])->name('4Update');

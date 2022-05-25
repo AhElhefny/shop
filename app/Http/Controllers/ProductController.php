@@ -15,20 +15,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-        switch (\request('filter')){
-            case ('Latest'):
-                $all=Product::orderBy('id','DESC')->simplePaginate(9)->withQueryString();
-                break;
-            case ('Popularity'):
-                $all=Product::orderBy('id','DESC')->simplePaginate(3)->withQueryString();
-                break;
-            case ('Best Rating'):
-                $all=Product::orderBy('id','DESC')->simplePaginate(5)->withQueryString();
-                break;
-            default:
-                $all=Product::orderBy('id','DESC')->simplePaginate(10)->withQueryString();
-        }
-//        $all=Product::filter(request(['Latest','Popularity','Best Rating']))->simplePaginate(9)->withQueryString();
+        $all=Product::filter(request(['filter']))->simplePaginate(9)->withQueryString();
         return view('shop',['allProducts'=> $all]);
     }
 

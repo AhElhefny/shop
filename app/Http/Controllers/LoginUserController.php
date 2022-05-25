@@ -18,8 +18,7 @@ class LoginUserController extends Controller
            'password' => ['required','min:7','max:255'],
         ]);
         if(!auth()->attempt($attr)){
-//            throw validationException::withMessages(['email'=>'your email or password or both are incorrect']);
-            return  back()->with('email','the all is error');
+            throw validationException::withMessages(['login'=>'your email or password or both are incorrect']);
         }
         session()->regenerate();
         return redirect('/');
