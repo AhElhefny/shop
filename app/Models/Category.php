@@ -9,6 +9,7 @@ class Category extends Model
 {
     use HasFactory;
     protected $guarded=[];
+    protected $date=['delete_at'];
     protected $hasChild="false";
 
     public function products(){

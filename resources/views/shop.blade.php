@@ -3,7 +3,7 @@
     <x-layout.pageHeader name="Our Shop" />
     <!-- Page Header End -->
     <!-- Shop Start -->
-    @if($allProducts->count()>0)
+    @if($allProducts->count())
     <div class="container-fluid pt-5">
         @if(request('season'))
             <center><h1>{{strtoupper(request('season').' collections')}}</h1></center>
@@ -16,10 +16,12 @@
                 <x-shopComponents.priceFilter />
                 <!-- Price End -->
                 <!-- Color Start -->
-                <x-shopComponents.colorFilter />
+                @if($colors->count()>0)
+                <x-shopComponents.colorFilter :colors="$colors" />
+                @endif
                 <!-- Color End -->
                 <!-- Size Start -->
-                <x-shopComponents.sizeFilter />
+                <x-shopComponents.sizeFilter :Sizes="$sizes" />
                 <!-- Size End -->
             </div>
 
@@ -33,9 +35,9 @@
                     <!-- sort by Start -->
                     <x-shopComponents.sortByFilter />
                     <!-- sort by  end -->
-
-                    <x-shopComponents.productSection :allProducts="$allProducts" />
-
+                    @foreach($allProducts as $p)
+                        <x-layout.productCard :p="$p" class="col-lg-4" />
+                    @endforeach
 {{--                    <x-shopComponents.paginator />--}}
                     {!! $allProducts->links() !!}
                 </div>

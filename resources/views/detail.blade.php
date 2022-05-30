@@ -34,8 +34,12 @@
 
             <div class="col-lg-7 pb-5">
                 <h3 class="font-weight-semi-bold">{{$product->name}}</h3>
-
-                <x-detailComponents.rates :rate="$product->rates" />
+                <div class="d-flex mb-3">
+                    <div class="text-primary mr-2">
+                        <x-detailComponents.rates :avg="$product->rates->pluck('amount')->avg()" />
+                    </div>
+                    <small class="pt-1">(<span id="reviewCount1">{{$product->rates->count()}}</span> Reviews)</small>
+                </div>
 
                 <h3 class="font-weight-semi-bold mb-4">${{$product->price}}</h3>
                 <p class="mb-4">{{$product->description}}.</p>
@@ -43,8 +47,9 @@
                 <x-detailComponents.size :size="$product->sizes" />
 
                 <x-detailComponents.color :color="$product->colors" />
-
-                <x-detailComponents.addToCart />
+                @auth
+                    <x-detailComponents.addToCart />  {{-- TODO --}}
+                @endauth
 
                 <x-detailComponents.shareSection />
             </div>
@@ -53,15 +58,15 @@
             <div class="col">
                 <div class="nav nav-tabs justify-content-center border-secondary mb-4">
                     <a class="nav-item nav-link active" data-toggle="tab" href="#tab-pane-1">Description</a>
-                    <a class="nav-item nav-link" data-toggle="tab" href="#tab-pane-2">Information</a>
-                    <a class="nav-item nav-link" data-toggle="tab" href="#tab-pane-3">Reviews (0)</a>
+{{--                    <a class="nav-item nav-link" data-toggle="tab" href="#tab-pane-2">Information</a>--}}
+                    <a class="nav-item nav-link" data-toggle="tab" href="#tab-pane-3">Reviews (<span id="reviewCount2">{{$product->rates->count()}}</span>)</a>
                 </div>
                 <div class="tab-content">
                     <x-detailComponents.productDesc :desc="$product->description" />
 
-                    <x-detailComponents.moreInfo  />
+{{--                    <x-detailComponents.moreInfo  />--}}
 
-                    <x-detailComponents.reviewPanel  />
+                    <x-detailComponents.reviewPanel :product="$product" />
                 </div>
             </div>
         </div>

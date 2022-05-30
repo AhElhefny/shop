@@ -9,6 +9,8 @@ class Color extends Model
 {
     use HasFactory;
     protected $guarded=[];
+    protected $date=['delete_at'];
+
 
     public function products()
     {

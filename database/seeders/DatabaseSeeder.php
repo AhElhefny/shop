@@ -47,19 +47,15 @@ class DatabaseSeeder extends Seeder
             ]);
         }
 
-        for ($i=0 ; $i<20;$i++){
+        for ($i=0 ; $i<50;$i++){
             DB::table('productcolor')->insert(array(
                 array('product_id'=>rand(1,20),'color_id'=>rand(1,10))
             ));
-            DB::table('productrate')->insert(array(
-                array('product_id'=>rand(1,20),'rate_id'=>rand(1,5))
-            ));
+
             DB::table('productsize')->insert(array(
                 array('product_id'=>rand(1,20),'size_id'=>rand(1,6))
             ));
-            DB::table('productuserrates')->insert(array(
-                array('productrate_id'=>rand(1,20),'user_id'=>rand(1,10))
-            ));
+
 
 
         }

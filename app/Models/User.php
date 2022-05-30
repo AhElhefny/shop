@@ -17,6 +17,8 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $guarded = [];
+    protected $date=['delete_at'];
+
 
     /**
      * The attributes that should be hidden for serialization.
@@ -42,6 +44,6 @@ class User extends Authenticatable
     }
 
     public function rates(){
-        return $this->belongsToMany(Rate::class,'productuserrates');
+        return $this->hasMany(Rate::class);
     }
 }

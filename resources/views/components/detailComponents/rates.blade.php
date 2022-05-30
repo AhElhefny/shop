@@ -1,20 +1,11 @@
-@props(['rate'])
-<div class="d-flex mb-3">
-    <div class="text-primary mr-2">
-        @php
-            $sum=0;
-                foreach ($rate as $r){
-                    $sum +=$r->amount;
-                }
-                $sum/=$rate->count();
-        for($i=0 ; $i<$sum ;$i++){
+@php
+    for($i=0 ; $i<5 ;$i++){
+        if($i < (int)$avg)
             echo "<small class='fas fa-star'></small>";
-        }
-        for($j=0;$j<(int)(5-$sum);$j++){
-           echo "<small class='far fa-star'></small>";
-        }
-        @endphp
-    </div>
-    <small class="pt-1">({{$rate->count()}} Reviews)</small>
-</div>
-{{--                        <small class="fas fa-star-half-alt"></small>--}}
+        elseif($i ==(int)$avg && $avg-$i==0.5)
+            echo "<small class='fas fa-star-half-alt'></small>";
+        else
+            echo "<small class='far fa-star'></small>";
+    }
+@endphp
+

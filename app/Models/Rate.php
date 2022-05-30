@@ -9,14 +9,19 @@ class Rate extends Model
 {
     use HasFactory;
     protected $guarded=[];
+    protected $date=['delete_at'];
+    protected $with=['user'];
 
-    public function products(){
-        return $this->belongsToMany(Product::class,'productrate');
+
+    public function product(){
+        return $this->belongsTo(Product::class);
     }
 
-    public function users(){
-        return $this->belongsToMany(User::class,'productuserrates');
+    public function user(){
+        return $this->belongsTo(User::class);
     }
+
+
 
 
 }

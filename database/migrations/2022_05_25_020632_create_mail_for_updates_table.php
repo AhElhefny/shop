@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class ProductRateTable extends Migration
+class CreateMailForUpdatesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,10 @@ class ProductRateTable extends Migration
      */
     public function up()
     {
-        Schema::create('productRate',function (Blueprint $table){
+        Schema::create('mail_for_updates', function (Blueprint $table) {
             $table->id();
-            $table->unsignedInteger('product_id');
-            $table->foreign('product_id')->references('id')->on('products');
-            $table->unsignedInteger('rate_id');
-            $table->foreign('rate_id')->references('id')->on('rates');
-            $table->text('review')->nullable();
+            $table->string('email')->unique()->nullable();
+            $table->softDeletes();
             $table->timestamps();
         });
     }
@@ -31,6 +28,6 @@ class ProductRateTable extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('mail_for_updates');
     }
 }

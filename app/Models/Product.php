@@ -9,6 +9,8 @@ class Product extends Model
 {
     use HasFactory;
     protected $guarded=[];
+    protected $date=['delete_at'];
+
     protected $with=['category'];
     public function scopeFilter($query,array $filter){
         $query->when($filter['Latest']??false ,function ($query){
@@ -21,6 +23,8 @@ class Product extends Model
            $query->where('category_id',$category);
         })->when($filter['season']??false,function ($query,$season){
             $query->where('season',$season);
+        })->when($filter['offer']??false,function ($query){
+            $query->where('offers','>=',20);
         });
     }
 
@@ -37,19 +41,7 @@ class Product extends Model
     }
 
     public function rates(){
-        return $this->belongsToMany(Rate::class,'productrate');
+        return $this->hasMany(Rate::class);
     }
 
-    public function users(){
-        return $this->belongsToMany(User::class,'favourites');
-    }
-
-    public function sumRate(){
-        $sum=0;
-        return array_sum($this->rates->map(function ($i)use ($sum){
-             $sum +=$i->amount;
-             return $sum/count($this->rates);
-        })->toArray());
-
-    }
 }

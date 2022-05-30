@@ -11,6 +11,7 @@
         </div>
         <div class="col-lg-8 col-md-12">
             <div class="row">
+                <div class="col-md-2"></div>
                 <div class="col-md-4 mb-5">
                     <h5 class="font-weight-bold text-dark mb-4">Quick Links</h5>
                     <div class="d-flex flex-column justify-content-start">
@@ -22,16 +23,16 @@
                         <a class="text-dark" href="/contact"><i class="fa fa-angle-right mr-2"></i>Contact Us</a>
                     </div>
                 </div>
-                <div class="col-md-4 mb-5">
-                    <h5 class="font-weight-bold text-dark mb-4">Quick Links</h5>
-                    <div class="d-flex flex-column justify-content-start">
-                        <a class="text-dark mb-2" href="/"><i class="fa fa-angle-right mr-2"></i>Home</a>
-                        <a class="text-dark mb-2" href="/shop"><i class="fa fa-angle-right mr-2"></i>Our Shop</a>
-                        <a class="text-dark mb-2" href="/detail"><i class="fa fa-angle-right mr-2"></i>Shop Detail</a>
-                        <a class="text-dark mb-2" href="/cart"><i class="fa fa-angle-right mr-2"></i>Shopping Cart</a>
-                        <a class="text-dark mb-2" href="/checkout"><i class="fa fa-angle-right mr-2"></i>Checkout</a>
-                        <a class="text-dark" href="/contact"><i class="fa fa-angle-right mr-2"></i>Contact Us</a>
-                    </div>
+                <div class="col-md-1 mb-5">
+{{--                    <h5 class="font-weight-bold text-dark mb-4">Quick Links</h5>--}}
+{{--                    <div class="d-flex flex-column justify-content-start">--}}
+{{--                        <a class="text-dark mb-2" href="/"><i class="fa fa-angle-right mr-2"></i>Home</a>--}}
+{{--                        <a class="text-dark mb-2" href="/shop"><i class="fa fa-angle-right mr-2"></i>Our Shop</a>--}}
+{{--                        <a class="text-dark mb-2" href="/detail"><i class="fa fa-angle-right mr-2"></i>Shop Detail</a>--}}
+{{--                        <a class="text-dark mb-2" href="/cart"><i class="fa fa-angle-right mr-2"></i>Shopping Cart</a>--}}
+{{--                        <a class="text-dark mb-2" href="/checkout"><i class="fa fa-angle-right mr-2"></i>Checkout</a>--}}
+{{--                        <a class="text-dark" href="/contact"><i class="fa fa-angle-right mr-2"></i>Contact Us</a>--}}
+{{--                    </div>--}}
                 </div>
                 <div class="col-md-4 mb-5">
                     <h5 class="font-weight-bold text-dark mb-4">Quick Filters</h5>
@@ -49,16 +50,3 @@
             </div>
         </div>
     </div>
-{{--    <div class="row border-top border-light mx-xl-5 py-4">--}}
-{{--        <div class="col-md-6 px-xl-0">--}}
-{{--            <p class="mb-md-0 text-center text-md-left text-dark">--}}
-{{--                &copy; <a class="text-dark font-weight-semi-bold" href="#">Your Site Name</a>. All Rights Reserved. Designed--}}
-{{--                by--}}
-{{--                <a class="text-dark font-weight-semi-bold" href="https://htmlcodex.com">HTML Codex</a>--}}
-{{--            </p>--}}
-{{--        </div>--}}
-{{--        <div class="col-md-6 px-xl-0 text-center text-md-right">--}}
-{{--            <img class="img-fluid" src="{{asset('img/payments.png')}}" alt="">--}}
-{{--        </div>--}}
-{{--    </div>--}}
-{{--</div>--}}
