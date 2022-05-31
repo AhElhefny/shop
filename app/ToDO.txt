@@ -1,7 +1,17 @@
 TODO Public tasks
-1- store images                                                                             TODO
+1- store images                                                                             DONE
 2- Add To Cart
 3- show images in all project
+
+Index Page ==> 1- carousel images
+               2- add to cart
+               3- product image
+               4- category image
+
+Detail Page ==> 1- add to cart
+                2- product images in carousel
+                3- stars rate in review card by ajax
+                4- U may also like section
 
 TODO tasks for 25/5/2022
 1- create category products query string filter in shop page                                DONE
@@ -19,7 +29,7 @@ TODO tasks for 25/5/2022
 TODO tasks for 26/5/2022
 1- while filter by season show the season name in page header                               DONE
 2- show text message in shop if the return filter products is zero                          DONE
-3- create table features table with feature and icon column                                  DONE
+3- create table features table with feature and icon column                                 DONE
 4- create table for contact us                                                              DONE
 5- link the form contact with the table with ajax                                           DONE
 6- footer links => Big sale link                                                            DONE
@@ -28,7 +38,7 @@ TODO tasks for 27/5/2022
 1- discount of offer in product card                                                        DONE
 2- add column image in color table                                                          TODO
 3- review in shop detail page                                                               DONE
-4- make the review form active                                                              TODO
-5- you may also like => add  card to this section has the same category                     TODO
+4- make the review form active                                                              DONE
+5- you may also like => add  card to this section has the same category                     DONE
 6- remove information section                                                               DONE
 

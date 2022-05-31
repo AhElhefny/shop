@@ -46,4 +46,11 @@ class User extends Authenticatable
     public function rates(){
         return $this->hasMany(Rate::class);
     }
+
+    public function setImageAttribute($image){
+        if(strpos($image,'public/')==0){
+            $image=str_replace('public/','',$image);
+        }
+        $this->attributes['image']=$image;
+    }
 }

@@ -6,6 +6,7 @@
         <div class="card-body border-left border-right text-center p-0 pt-4 pb-3">
             <h6 class="text-truncate mb-3">{{$p->name}}</h6>
             <div class="d-flex justify-content-center">
+{{--                @dd(bcsub($p->price,((int)bcmul(intdiv($p->offers,100),$p->price))))--}}
                 <h6>${{$p->price-(($p->offers/100)*$p->price)}}</h6><h6 class="text-muted ml-2">@if($p->offers)<del>${{$p->price}}</del>@endif</h6>
             </div>
         </div>

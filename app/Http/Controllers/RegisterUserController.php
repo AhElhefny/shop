@@ -12,7 +12,7 @@ class RegisterUserController extends Controller
 {
     public function register(UserRequest $request){
         $user=$request->except('ConfirmPassword');
-        $user['image']=$request->file('image')->store('usersImages');
+        $user['image']=$request->file('image')->store('public/usersImages');
         Auth::login(User::create($user));
         return redirect('/');
     }

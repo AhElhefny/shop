@@ -14,7 +14,7 @@ class SizeFactory extends Factory
     public function definition()
     {
         return [
-
+            //
         ];
     }
 }

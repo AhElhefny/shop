@@ -31,8 +31,8 @@ class DatabaseSeeder extends Seeder
 
         User::factory(10)->create();
         Product::factory(20)->create();
-        Rate::factory(5)->create();
-        Color::factory(10)->create();
+        Rate::factory(50)->create();
+        Color::factory(50)->create();
 
         // category factory
         foreach ($this->category as $key=>$cat) {
@@ -47,7 +47,7 @@ class DatabaseSeeder extends Seeder
             ]);
         }
 
-        for ($i=0 ; $i<50;$i++){
+        for ($i=0 ; $i<100;$i++){
             DB::table('productcolor')->insert(array(
                 array('product_id'=>rand(1,20),'color_id'=>rand(1,10))
             ));

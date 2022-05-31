@@ -125,6 +125,7 @@
         e.preventDefault();
         let reviewMessage=$("#message").val();
         let rateAmount=$("input[name='rating']:checked").val();
+
         console.log(rateAmount);
         $.ajax({
             url:"{{route('storeReview')}}",
@@ -138,12 +139,13 @@
             },
             success:function (response){
                 if(response){
+
                     $("#reviewForm")[0].reset();
                     $("#reviewCard").prepend('<div class="media mb-4">' +
-                        '<img src="{{asset('img/vendor-'. rand(1,8) .'.jpg')}}" alt="Image" class="img-fluid mr-3 mt-1" style="width: 45px;">' +
+                        '<img src="{{asset('storage/'.auth()->user()->image)}}" alt="Image" class="img-fluid mr-3 mt-1" style="width: 45px;">' +
                         '<div class="media-body">' +
                         '<h6>{{auth()->user()->name}}<small> - <i>{{now()->format('d M Y')}}</i></small></h6>' +
-                        '<div class="text-primary mb-2">' +
+                        '<div class="text-primary mb-2" id="star">' +
                     {{--    '<x-detailcomponents.rates :avg='+ response.amount +'/>'+--}}
                         '</div><p>'+ response.review +'</p></div></div>');
                     $("#reviewCount").html(response.count);

@@ -18,7 +18,7 @@ class RateFactory extends Factory
             'product_id' =>$this->faker->numberBetween(1,20),
             'user_id' =>$this->faker->numberBetween(1,10),
             'review' => $this->faker->text,
-            'amount' => $this->faker->unique()->numberBetween(1,5),
+            'amount' => $this->faker->numberBetween(1,5),
         ];
     }
 }

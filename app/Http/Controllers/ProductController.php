@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\Color;
 use App\Models\Product;
+use App\Models\Size;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -15,7 +17,13 @@ class ProductController extends Controller
      */
     public function index()
     {
-        return ;
+        $all=Product::filter(request(['Latest','Popularity','BestRating','category','season','offer']))->simplePaginate(9)->withQueryString();
+
+        return view('shop',[
+            'allProducts' => $all
+            ,'colors' => Color::all(),
+            'sizes' => Size::all(),
+        ]);
     }
 
     /**
@@ -47,7 +55,10 @@ class ProductController extends Controller
      */
     public function show(Product $product)
     {
-        return view('detail',['product'=>$product]);
+        return view('detail',[
+            'product'=>$product,
+            'productRate' => $product->rates()->simplePaginate(4)
+        ]);
     }
 
     /**

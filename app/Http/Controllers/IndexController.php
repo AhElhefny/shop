@@ -6,6 +6,7 @@ use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\DB;
+use Jorenvh\Share\Share;
 
 class IndexController extends Controller
 {
@@ -19,8 +20,8 @@ class IndexController extends Controller
        foreach ($p as $key => $value){
            array_push($test,["id" => $key+1, "avg" => $value]);
        }
-       $bRPs=Product::whereIn('id',array_map(fn($i)=>$i['id'],array_slice(array_reverse($test),0,9)))->get('id');
-
+       $bRPs=Product::whereIn('id',array_map(fn($i)=>$i['id'],array_slice(array_reverse($test),0,8)))->get();
+//       dd($bRPs);
         return view('index',[
             'allCategories' => $cat,
             'justArriveProducts' => Product::orderBy('id','DESC')->limit(8)->get(),

@@ -20,12 +20,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [IndexController::class,'index']);
+Route::get('/', [IndexController::class,'index'])->name('home');
 Route::view('cart','cart');
 Route::view('contact','contact');
 Route::view('checkout','checkout');
 
-Route::get('shop',[ShopController::class,'index']);
+Route::get('shop',[ProductController::class,'index']);
 Route::get('product/detail/{product}',[ProductController::class,'show']);
 
 Route::post('signUp',[RegisterUserController::class,'register']);
