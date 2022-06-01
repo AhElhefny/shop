@@ -21,7 +21,7 @@ class LoginUserController extends Controller
             throw validationException::withMessages(['login'=>'your email or password or both are incorrect']);
         }
         session()->regenerate();
-        return redirect('/');
+        return back();
     }
     public function destroy(){
         Auth::logout();

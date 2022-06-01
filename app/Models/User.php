@@ -43,7 +43,7 @@ class User extends Authenticatable
         return $this->belongsToMany(Product::class,'favourites');
     }
 
-    public function rates(){
+    public function favrates(){
         return $this->hasMany(Rate::class);
     }
 

@@ -2,6 +2,7 @@ TODO Public tasks
 1- store images                                                                             DONE
 2- Add To Cart
 3- show images in all project
+4- in top bar my favorite product
 
 Index Page ==> 1- carousel images
                2- add to cart
@@ -10,8 +11,17 @@ Index Page ==> 1- carousel images
 
 Detail Page ==> 1- add to cart
                 2- product images in carousel
-                3- stars rate in review card by ajax
-                4- U may also like section
+                3- U may also like section
+
+
+Shop Page   ==> 1- add to cart
+                2- multi select in filters['color', 'size', 'price']
+                3- form request with exist query string in filters and search
+                4- composite primary key with three column ['product_id', 'size', 'color'] at product_attributes
+                5- product image
+                6- sorted by popularity and Best Rating
+
+SoppingCart Page ==> All
 
 TODO tasks for 25/5/2022
 1- create category products query string filter in shop page                                DONE

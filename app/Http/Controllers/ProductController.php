@@ -5,8 +5,11 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Models\Color;
 use App\Models\Product;
+use App\Models\ProductAttributes;
 use App\Models\Size;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Validation\Rule;
 
 class ProductController extends Controller
 {
@@ -17,12 +20,13 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $all=Product::filter(request(['Latest','Popularity','BestRating','category','season','offer']))->simplePaginate(9)->withQueryString();
+        $all=Product::filter(request(['Latest','Popularity','BestRating','category','season','offer','price','size','color','search']))->simplePaginate(9)->withQueryString();
+        $products=Product::all();
 
         return view('shop',[
-            'allProducts' => $all
-            ,'colors' => Color::all(),
-            'sizes' => Size::all(),
+            'allProducts' => $all,
+            'allAtrr' =>ProductAttributes::latest()->simplePaginate(5),
+            'products' => $products,
         ]);
     }
 
@@ -93,5 +97,21 @@ class ProductController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function storeFav(){
+        $data = request()->validate([
+            'product_id' =>['required','numeric',Rule::exists('products','id')],
+            'user_id' =>['required','numeric',Rule::exists('users','id')],
+        ]);
+        DB::table('favourites')->insert([
+            'product_id' => $data['product_id'],
+            'user_id' => $data['user_id']
+        ]);
+        if(\request()->ajax()){
+            $favCount=DB::table('favourites')->where('user_id',auth()->user()->id)->count();
+            return response()->json($favCount);
+        }
+        return view('');
     }
 }

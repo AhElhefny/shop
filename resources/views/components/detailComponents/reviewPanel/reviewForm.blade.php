@@ -151,6 +151,13 @@
                     $("#reviewCount").html(response.count);
                     $("#reviewCount1").html(response.count);
                     $("#reviewCount2").html(response.count);
+                    for (let i=0 ; i < 5 ; i++){
+                        if(i < response.amount){
+                            $("#star").append("<small class='fas fa-star'></small>");
+                        }else{
+                            $("#star").append("<small class='far fa-star'></small>");
+                        }
+                    }
                 }
                 console.log('success');
             },

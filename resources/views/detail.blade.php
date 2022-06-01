@@ -44,9 +44,9 @@
                 <h3 class="font-weight-semi-bold mb-4">${{$product->price}}</h3>
                 <p class="mb-4">{{$product->description}}.</p>
 
-                <x-detailComponents.size :size="$product->sizes->unique()" />
+                <x-detailComponents.size :size="$product->productattributes" />
 
-                <x-detailComponents.color :color="$product->colors->unique()" />
+                <x-detailComponents.color :color="$product->productattributes" />
                 @auth
                     <x-detailComponents.addToCart />  {{-- TODO --}}
                 @endauth

@@ -13,7 +13,9 @@
                     <div class="navbar-nav mr-auto py-0">
                         <a href="/" class="nav-item nav-link">Home</a>
                         <a href="/shop" class="nav-item nav-link">Shop</a>
+                        @auth
                         <a href="/cart" class="nav-item nav-link">Shopping Cart</a>
+                        @endauth
                         <a href="/contact" class="nav-item nav-link">Contact</a>
                     </div>
                     <div class="navbar-nav ml-auto py-0">

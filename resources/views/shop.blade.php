@@ -12,17 +12,19 @@
 
             <!-- Shop Sidebar Start -->
             <div class="col-lg-3 col-md-12">
+
                 <!-- Price Start -->
-                <x-shopComponents.priceFilter />
+                <x-shopComponents.priceFilter :allpro="$products" />
                 <!-- Price End -->
+                @if($allAtrr->count()>0)
+                <!-- Size Start -->
+                <x-shopComponents.sizeFilter :allatrr="$allAtrr"/>
+                <!-- Size End -->
+
                 <!-- Color Start -->
-                @if($colors->count()>0)
-                <x-shopComponents.colorFilter :colors="$colors" />
+                <x-shopComponents.colorFilter :atrr="$allAtrr"/>
                 @endif
                 <!-- Color End -->
-                <!-- Size Start -->
-                <x-shopComponents.sizeFilter :Sizes="$sizes" />
-                <!-- Size End -->
             </div>
 
             <!-- Shop Sidebar End -->

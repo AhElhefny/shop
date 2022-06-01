@@ -1,12 +1,12 @@
 <div class="col-12 pb-1">
     <div class="d-flex align-items-center justify-content-between mb-4">
-        <form action="">
+        <form action="" method="get">
             <div class="input-group">
-                <input type="text" class="form-control" placeholder="Search by name">
+                <input type="text" name="search" class="form-control" id="searchInput" placeholder="Search by name, season, color, size">
                 <div class="input-group-append">
-                                        <span class="input-group-text bg-transparent text-primary">
-                                            <i class="fa fa-search"></i>
-                                        </span>
+                    <span class="input-group-text bg-transparent text-primary">
+                        <i class="fa fa-search"></i>
+                    </span>
                 </div>
             </div>
         </form>
@@ -23,3 +23,4 @@
         </div>
     </div>
 </div>
+

@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use phpDocumentor\Reflection\PseudoTypes\LowercaseString;
 
 class Product extends Model
 {
@@ -25,6 +26,36 @@ class Product extends Model
             $query->where('season',$season);
         })->when($filter['offer']??false,function ($query){
             $query->where('offers','>=',20);
+        })->when($filter['price']?? false,function ($query,$price){
+            if($price==="all"){
+                $query->where('price','>',0);
+            }
+            elseif ($price==="moreThan 500"){
+                $query->where('price','>',500);
+            }
+            else {
+                $price = explode(',', $price);
+                $query->whereBetween('price', [(int)$price[0], (int)$price[1]]);
+            }
+        })->when($filter['size']??false,function ($query,$size){
+            if($size!=="all"){
+                $query->whereHas('productattributes',fn($query)=>
+                $query->where('size', $size)
+                );
+            }
+        })->when($filter['color']??false,function ($query,$color){
+            $query->whereHas('productattributes',function ($query)use($color) {
+                  if ($color !== "all") {
+                     $query->where('color', $color);
+                }
+            });
+        })->when($filter['search']??false,function ($query,$search){
+            $query->where(fn($query)=>
+                $query->where('name','like', '%'.$search.'%')
+                ->orWhere('season','like', '%'.$search.'%')
+                ->orWhereHas('productattributes',function ($query)use($search){
+                    $query->where('color',strtolower($search));
+                }));
         });
     }
 
@@ -32,15 +63,11 @@ class Product extends Model
        return $this->belongsTo(Category::class);
     }
 
-    public function colors(){
-        return $this->belongsToMany(Color::class,'productcolor');
+    public function productattributes(){
+        return $this->hasMany(ProductAttributes::class);
     }
 
-    public function sizes(){
-        return $this->belongsToMany(Size::class,'productsize');
-    }
-
-    public function rates(){
+    public function favrates(){
         return $this->hasMany(Rate::class);
     }
 

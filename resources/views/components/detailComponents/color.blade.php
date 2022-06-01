@@ -8,8 +8,8 @@
     <form>
         @foreach($color as $c)
             <div class="custom-control custom-radio custom-control-inline">
-                <input type="radio" class="custom-control-input" id="{{$c->name}}" name="color">
-                <label class="custom-control-label" for="{{$c->name}}">{{$c->name}}</label>
+                <input type="radio" class="custom-control-input" id="{{$c->color}}" name="color">
+                <label class="custom-control-label" for="{{$c->color}}">{{$c->color}}</label>
             </div>
         @endforeach
     </form>

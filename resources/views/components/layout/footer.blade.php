@@ -37,12 +37,12 @@
                 <div class="col-md-4 mb-5">
                     <h5 class="font-weight-bold text-dark mb-4">Quick Filters</h5>
                     <div class="d-flex flex-column justify-content-start">
-                        <a class="text-dark mb-2" href="/shop?season=summer"><i class="fa fa-angle-right mr-2"></i>Summer Collections</a>
-                        <a class="text-dark mb-2" href="/shop?season=winter"><i class="fa fa-angle-right mr-2"></i>Winter Collections</a>
-                        <a class="text-dark mb-2" href="/shop?season=spring"><i class="fa fa-angle-right mr-2"></i>Spring Collections</a>
-                        <a class="text-dark" href="/shop?season=autumn"><i class="fa fa-angle-right mr-2"></i>Autumn Collections</a>
-                        <a class="text-dark mb-2" href="/shop?offer=sale"><i class="fa fa-angle-right mr-2"></i>Big Sale</a>
-                        <a class="text-dark mb-2" href="/shop?Latest=filter"><i class="fa fa-angle-right mr-2"></i>Latest </a>
+                        <a class="text-dark mb-2" href="/shop?season=summer.{{'&'.http_build_query(request()->except(['page','season']))}}"><i class="fa fa-angle-right mr-2"></i>Summer Collections</a>
+                        <a class="text-dark mb-2" href="/shop?season=winter.{{'&'.http_build_query(request()->except(['page','season']))}}"><i class="fa fa-angle-right mr-2"></i>Winter Collections</a>
+                        <a class="text-dark mb-2" href="/shop?season=spring.{{'&'.http_build_query(request()->except(['page','season']))}}"><i class="fa fa-angle-right mr-2"></i>Spring Collections</a>
+                        <a class="text-dark mb-2" href="/shop?season=autumn.{{'&'.http_build_query(request()->except(['page','season']))}}"><i class="fa fa-angle-right mr-2"></i>Autumn Collections</a>
+                        <a class="text-dark mb-2" href="/shop?offer=sale.{{'&'.http_build_query(request()->except(['page','offer']))}}"><i class="fa fa-angle-right mr-2"></i>Big Sale</a>
+                        <a class="text-dark mb-2" href="/shop?Latest=filter.{{'&'.http_build_query(request()->except(['page','Latest']))}}"><i class="fa fa-angle-right mr-2"></i>Latest </a>
 
                     </div>
                 </div>

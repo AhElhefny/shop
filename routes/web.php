@@ -25,13 +25,24 @@ Route::view('cart','cart');
 Route::view('contact','contact');
 Route::view('checkout','checkout');
 
-Route::get('shop',[ProductController::class,'index']);
-Route::get('product/detail/{product}',[ProductController::class,'show']);
+Route::controller(ProductController::class)->group(function (){
+    Route::get('shop','index')->name('shop');
+    Route::get('product/detail/{product}','show');
+    Route::get('addFav','storeFav')->name('add2Fav');
+});
+
 
 Route::post('signUp',[RegisterUserController::class,'register']);
-Route::post('login',[LoginUserController::class,'login']);
-Route::post('logout',[LoginUserController::class,'destroy'])->middleware('auth');
 
+Route::controller(LoginUserController::class)->group(function (){
+    Route::post('login','login');
+    Route::post('logout','destroy')->middleware('auth');
+});
+
+Route::controller(ContactUsController::class)->group(function (){
+    Route::post('sendContact','contact')->name('sendContact');
+    Route::post('createReview','storeReview')->name('storeReview');
+});
 Route::post('mailForUpdate',[MailForUpdateController::class,'storeMailForUpdate'])->name('4Update');
-Route::post('sendContact',[ContactUsController::class,'contact'])->name('sendContact');
-Route::post('createReview',[ContactUsController::class,'storeReview'])->name('storeReview');
+
+
