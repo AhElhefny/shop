@@ -17,13 +17,13 @@ class CreateProductAttributesTable extends Migration
 //            $table->increments('id')->unique();
             $table->unsignedInteger('product_id');
             $table->foreign('product_id')->references('id')->on('products');
-            $table->string('size');
+            $table->char('size',4);
             $table->string('color');
             $table->primary(array('product_id','size','color'));
             $table->tinyInteger('amount')->default(0);
             $table->timestamps();
         });
-//        DB::unprepared('ALTER TABLE `product_attributes` DROP PRIMARY KEY, ADD PRIMARY KEY (`product_id`,`size`,`color`)');
+//        DB::unprepared('ALTER TABLE `product_attributes` DROP PRIMARY KEY, ADD PRIMARY KEY (`size`,`color`)');
     }
 
     /**

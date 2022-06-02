@@ -1,5 +1,5 @@
 <div class="col-md-6">
-    <h4 class="mb-4"><span id="reviewCount">{{$pr->count()}}</span> review for "{{$product->name}}"</h4>
+    <h4 class="mb-4"><span id="reviewCount">{{$pr->whereNotNull('amount')->count()}}</span> review for "{{$product->name}}"</h4>
     <div id="reviewCard">
     @foreach($pr as $UR)
         <div class="media mb-4" >

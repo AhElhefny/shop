@@ -14,7 +14,7 @@ class IndexController extends Controller
         $p=array_unique(Arr::flatten(Category::select('parent')->where('parent','!=',0)->get()->toArray()));
         $cat=Category::latest()->whereNotIn('id',$p)->simplePaginate(6);
 
-        $p=Arr::sort(Product::all()->map(fn($i)=>$i->rates->pluck('amount')->avg()));
+        $p=Arr::sort(Product::all()->map(fn($i)=>$i->favrates->pluck('amount')->avg()));
 
         $test=[];
        foreach ($p as $key => $value){

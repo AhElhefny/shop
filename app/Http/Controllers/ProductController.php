@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use App\Models\Color;
+use App\Models\FavRate;
 use App\Models\Product;
 use App\Models\ProductAttributes;
 use App\Models\Size;
@@ -20,7 +21,13 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $all=Product::filter(request(['Latest','Popularity','BestRating','category','season','offer','price','size','color','search']))->simplePaginate(9)->withQueryString();
+        $all=Product::filter(request([
+            'Latest','Popularity','BestRating',
+            'category','season','offer','price',
+            'size','color','search','userFav'
+        ]))
+            ->simplePaginate(9)
+            ->withQueryString();
         $products=Product::all();
 
         return view('shop',[
@@ -61,7 +68,7 @@ class ProductController extends Controller
     {
         return view('detail',[
             'product'=>$product,
-            'productRate' => $product->rates()->simplePaginate(4)
+            'productRate' => $product->favrates()->whereNotNull('amount')->simplePaginate(4)
         ]);
     }
 
@@ -103,13 +110,20 @@ class ProductController extends Controller
         $data = request()->validate([
             'product_id' =>['required','numeric',Rule::exists('products','id')],
             'user_id' =>['required','numeric',Rule::exists('users','id')],
+            'favorite' =>['boolean']
         ]);
-        DB::table('favourites')->insert([
-            'product_id' => $data['product_id'],
-            'user_id' => $data['user_id']
-        ]);
+        $f=FavRate::where('user_id',auth()->user()->id)->where('product_id',$data['product_id'])->first();
+        if($f){
+            $data['favorite']=!$f->favorite;
+            DB::table('fav_rates')->where('product_id',$data['product_id'])
+                ->where('user_id',$data['user_id'])
+                ->update(['favorite'=>$data['favorite']]);
+        }else{
+            $data['favorite']=1;
+            FavRate::create($data);
+        }
         if(\request()->ajax()){
-            $favCount=DB::table('favourites')->where('user_id',auth()->user()->id)->count();
+            $favCount=FavRate::where('user_id',auth()->user()->id)->where('favorite',1)->count();
             return response()->json($favCount);
         }
         return view('');

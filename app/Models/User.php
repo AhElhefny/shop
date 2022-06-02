@@ -44,7 +44,7 @@ class User extends Authenticatable
     }
 
     public function favrates(){
-        return $this->hasMany(Rate::class);
+        return $this->hasMany(FavRate::class);
     }
 
     public function setImageAttribute($image){

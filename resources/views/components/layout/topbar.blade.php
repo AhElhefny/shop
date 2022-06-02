@@ -23,9 +23,9 @@
         </div>
         @auth
         <div class="col-lg-3 col-6 text-right">
-            <a href="" class="btn border">
-                <i class="fas fa-heart text-primary"></i>
-                <span class="badge" id="favCount">0</span>
+            <a href="/shop?userFav={{auth()->user()->id}}&.{{http_build_query(request()->except(['userFav','page']))}}" class="btn border">
+                <i class="fas fa-heart {{($userFavCount->where('user_id',auth()->user()->id)->count() >0 )?'text-danger':'text-primary'}} " id="topbarfav"></i>
+                <span class="badge" id="favCount">{{$userFavCount->where('user_id',auth()->user()->id)->count()}}</span>
             </a>
             <a href="/cart" class="btn border">
                 <i class="fas fa-shopping-cart text-primary"></i>

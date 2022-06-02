@@ -1,5 +1,4 @@
 <x-masterPage>
-
     <!-- Featured Start -->
     <x-layout.Featured :ourFeatures="$ourFeatures"/>
     <!-- Featured End -->

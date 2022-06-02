@@ -2,10 +2,11 @@
 
 namespace App\Providers;
 
+use App\Models\FavRate;
+
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Schema;
-use Illuminate\View\View;
-use Jorenvh\Share\Share;
+use Illuminate\Support\Facades\View;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -26,6 +27,9 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         Schema::defaultStringLength(191);
+        $userFavCount = FavRate::where('favorite', 1)->get();
+        View::share('userFavCount', $userFavCount);
+        FavRate::whereNull('review')->whereNull('amount')->where('favorite',0)->delete();
     }
 
 

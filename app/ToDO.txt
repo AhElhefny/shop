@@ -17,7 +17,7 @@ Detail Page ==> 1- add to cart
 Shop Page   ==> 1- add to cart
                 2- multi select in filters['color', 'size', 'price']
                 3- form request with exist query string in filters and search
-                4- composite primary key with three column ['product_id', 'size', 'color'] at product_attributes
+                4- composite primary key with three column ['product_id', 'size', 'color'] at product_attributes        DONE
                 5- product image
                 6- sorted by popularity and Best Rating
 

@@ -36,9 +36,9 @@
                 <h3 class="font-weight-semi-bold">{{$product->name}}</h3>
                 <div class="d-flex mb-3">
                     <div class="text-primary mr-2">
-                        <x-detailComponents.rates :avg="$product->rates->pluck('amount')->avg()" />
+                        <x-detailComponents.rates :avg="$product->favrates->whereNotNull('amount')->pluck('amount')->avg()" />
                     </div>
-                    <small class="pt-1">(<span id="reviewCount1">{{$product->rates->count()}}</span> Reviews)</small>
+                    <small class="pt-1">(<span id="reviewCount1">{{$product->favrates->whereNotNull('amount')->count()}}</span> Reviews)</small>
                 </div>
 
                 <h3 class="font-weight-semi-bold mb-4">${{$product->price}}</h3>
@@ -59,7 +59,7 @@
                 <div class="nav nav-tabs justify-content-center border-secondary mb-4">
                     <a class="nav-item nav-link active" data-toggle="tab" href="#tab-pane-1">Description</a>
 {{--                    <a class="nav-item nav-link" data-toggle="tab" href="#tab-pane-2">Information</a>--}}
-                    <a class="nav-item nav-link" data-toggle="tab" href="#tab-pane-3">Reviews (<span id="reviewCount2">{{$product->rates->count()}}</span>)</a>
+                    <a class="nav-item nav-link" data-toggle="tab" href="#tab-pane-3">Reviews (<span id="reviewCount2">{{$product->favrates->whereNotNull('amount')->count()}}</span>)</a>
                 </div>
                 <div class="tab-content">
                     <x-detailComponents.productDesc :desc="$product->description" />

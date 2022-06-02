@@ -16,10 +16,14 @@ class Product extends Model
     public function scopeFilter($query,array $filter){
         $query->when($filter['Latest']??false ,function ($query){
             $query->orderBy('id','DESC');
-        })->when($filter['Popularity']?? false,function($query){
-            $query->where('id',18);
-        })->when($filter['BestRating']??false,function ($query){
-            $query->where('id',8);
+//        })->when($filter['Popularity']?? false,function($query){
+//            $query->whereHas('favrates',function ($query){
+//                $query->where('favorite',1)->count()->max();
+//            });
+//        })->when($filter['BestRating']??false,function ($query){
+//            $query->whereHas('favrates',function ($query){
+//                $query->whereNotNull('amount')->sum('amount');
+//            });
         })->when($filter['category']??false,function ($query,$category){
            $query->where('category_id',$category);
         })->when($filter['season']??false,function ($query,$season){
@@ -56,6 +60,10 @@ class Product extends Model
                 ->orWhereHas('productattributes',function ($query)use($search){
                     $query->where('color',strtolower($search));
                 }));
+        })->when($filter['userFav']??false,function ($query,$user){
+            $query->whereHas('favrates',fn($query)=>
+               $query->where('user_id',$user)->where('favorite',1)
+            );
         });
     }
 
@@ -68,7 +76,7 @@ class Product extends Model
     }
 
     public function favrates(){
-        return $this->hasMany(Rate::class);
+        return $this->hasMany(FavRate::class);
     }
 
 }
