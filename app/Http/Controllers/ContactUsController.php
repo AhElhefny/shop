@@ -11,6 +11,10 @@ use Illuminate\Validation\Rule;
 
 class ContactUsController extends Controller
 {
+
+    public function index(){
+        return view('contact');
+    }
     public function contact(){
         $data = request()->validate([
             'name' => ['required','min:7','max:255'],

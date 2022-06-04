@@ -53,4 +53,8 @@ class User extends Authenticatable
         }
         $this->attributes['image']=$image;
     }
+
+    public function carts(){
+      return  $this->hasMany(UserCart::class);
+    }
 }

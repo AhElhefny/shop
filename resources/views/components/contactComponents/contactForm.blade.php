@@ -57,7 +57,7 @@
                 swalFire('success','Your Message sent successfully!');
                 $("#ContactForm")[0].reset();
             },
-            error:function (xhr,errorMessage){
+            error:function (xhr){
                 if(xhr.responseJSON.errors.name){
                     $("#nameError").html(xhr.responseJSON.errors.name[0]);
                 }if(xhr.responseJSON.errors.email){

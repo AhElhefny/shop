@@ -8,6 +8,7 @@ use App\Models\FavRate;
 use App\Models\Product;
 use App\Models\ProductAttributes;
 use App\Models\Size;
+use App\Models\UserCart;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\Rule;
@@ -128,4 +129,6 @@ class ProductController extends Controller
         }
         return view('');
     }
+
+
 }

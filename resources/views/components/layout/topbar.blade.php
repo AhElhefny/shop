@@ -29,7 +29,7 @@
             </a>
             <a href="/cart" class="btn border">
                 <i class="fas fa-shopping-cart text-primary"></i>
-                <span class="badge" id="cartCount">0</span>
+                <span class="badge" id="cartCount">{{$userCartCount->where('user_id',auth()->user()->id)->count()}}</span>
             </a>
         </div>
         @endauth

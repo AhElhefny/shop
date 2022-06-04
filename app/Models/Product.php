@@ -79,4 +79,9 @@ class Product extends Model
         return $this->hasMany(FavRate::class);
     }
 
+    public function carts(){
+       return $this->hasMany(UserCart::class);
+    }
+
+
 }

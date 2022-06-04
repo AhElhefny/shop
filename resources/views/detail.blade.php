@@ -48,7 +48,7 @@
 
                 <x-detailComponents.color :color="$product->productattributes" />
                 @auth
-                    <x-detailComponents.addToCart />  {{-- TODO --}}
+                    <x-detailComponents.addToCart :p="$product"/>  {{-- TODO --}}
                 @endauth
 
                 <x-detailComponents.shareSection />
