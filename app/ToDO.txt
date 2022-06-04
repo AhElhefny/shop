@@ -1,29 +1,20 @@
 TODO Public tasks
-1- store images                                                                             DONE
-2- Add To Cart                                                                              DONE
-3- show images in all project
-4- in top bar my favorite product                                                           DONE
+1- Images
+        ==>
+            1- carousel images IN index Page
+            2- product AND category images IN index Page
+            3- product images in carousel IN detail Page
+            4- product image IN shop Page
+            5- product image IN cart Page
 
-Index Page ==> 1- carousel images
-               2- add to cart                                                               DONE
-               3- product image
-               4- category image
+Detail Page ==> 1- U may also like section
+                2- review form hide if I have review before
 
-Detail Page ==> 1- add to cart                                                              TODO
-                2- product images in carousel
-                3- U may also like section
-
-
-Shop Page   ==> 1- add to cart                                                              DONE
-                2- multi select in filters['color', 'size', 'price']
-                3- form request with exist query string in filters and search
-                4- composite primary key with three column ['product_id', 'size', 'color'] at product_attributes        DONE
-                5- product image
-                6- sorted by popularity and Best Rating
+Shop Page   ==> 1- multi select in filters['color', 'size', 'price']
+                2- form request with exist query string in filters and search
+                3- sorted by popularity and Best Rating
 
 ShoppingCart Page ==> 1- Quantity according to the selected color
-                      2- total multiply quantity to price
-                      3- product image in cart
 
 Check out Page ==> ALL
 

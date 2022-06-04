@@ -22,46 +22,15 @@
             <a href="/product/detail/{{$p->id}}" class="btn btn-sm text-dark p-0"><i class="fas fa-eye text-primary mr-1"></i>View Detail</a>
 
             @auth
-                <a class="btn btn-sm text-dark p-0" id="addToCart{{$p->id}}" ><i class="fas fa-shopping-cart text-primary mr-1" >
-                    </i>Add To Cart</a>
+{{--                <a class="btn btn-sm text-dark p-0" id="addToCart{{$p->id}}" ><i class="fas fa-shopping-cart text-primary mr-1" >--}}
+{{--                    </i>Add To Cart</a>--}}
+                <x-layout.cartButton :p="$p" css="btn btn-sm text-dark p-0" icontext="text-primary"/>
             @endauth
         </div>
     </div>
 </div>
 @auth
 <script>
-    $("#addToCart{{$p->id}}").click(function (){
-        $.ajax({
-            url:"{{route('add2Cart')}}",
-            type:"POST",
-            data:{
-                _token:"{{csrf_token()}}",
-                product_id:"{{$p->id}}",
-                user_id:"{{auth()->user()->id}}"
-            },
-            success:function (response){
-                if(response) {
-                    $("#cartCount").html(response);
-                    Swal.fire({
-                        title: "Success",
-                        text: "{{$p->name}} added to your cart successfully",
-                        icon: "success",
-                        confirmButtonText: 'Ok'
-                    })
-                }
-            },
-            error:function (){
-                    Swal.fire({
-                        title: "WARNING!",
-                        text: "{{$p->name}} added to your cart Before",
-                        icon: "warning",
-                        confirmButtonText: 'Ok'
-                    })
-                }
-        })
-    });
-
-
 
     $("#addFav{{$p->id}}").click(function (){
         let textclass=$("#favIcon{{$p->id}}").hasClass('text-primary');

@@ -7,7 +7,7 @@
     <div class="container-fluid pt-5">
         <div class="row px-xl-5">
             <div class="col-lg-8 table-responsive mb-5">
-                <table class="table table-bordered text-center mb-0">
+                <table class="table table-bordered text-center mb-0" id="cart_table">
                     <thead class="bg-secondary text-dark">
                         <tr>
                             <th>Products</th>
@@ -23,7 +23,7 @@
                     @forelse(auth()->user()->carts as $cart)
                         <tr id="DeleteRaw{{$cart->product_id}}{{auth()->user()->id}}" class="trDel">
                             <td class="align-middle"><img src="{{asset('img/product-'.rand(1,8).'.jpg')}}" alt="" style="width: 50px;"> {{$cart->product->name}}</td>
-                            <td class="align-middle">${{$cart->product->price}}</td>
+                            <td class="align-middle price" id="productPrice{{$cart->product_id}}">${{$cart->product->price}}</td>
                             <td class="align-middle">
                                 <select style="width: 61px;" id="selectSize{{$cart->product_id}}" name="{{$cart->product_id}}" class="sizeSelect">
                                     <option selected disabled>Size</option>
@@ -40,11 +40,11 @@
                             <td class="align-middle">
                                 <div class="input-group quantity mx-auto " style="width: 70px;">
                                     <input type="number" min="1" max="12"
-                                           class="form-control form-control-sm bg-secondary text-center rounded border-dark"
-                                           value="1" id="quantity{{$cart->product_id}}">
+                                           class="form-control form-control-sm bg-secondary text-center rounded border-dark inputNumber"
+                                           value="1" id="quantity{{$cart->product_id}}" name=""/>
                                 </div>
                             </td>
-                            <td class="align-middle">$150</td>
+                            <td class="align-middle" id="totalPrice{{$cart->product_id}}">${{$cart->product->price}}</td>
                             <td class="align-middle"><a id="{{$cart->product_id}}" class="btn btn-sm btn-primary del"><i class="fa fa-times"></i></a></td>
                         </tr>
                     @empty
@@ -60,6 +60,24 @@
     <!-- Cart End -->
 
     <script>
+        // calcualte total price according to its quantity
+        $(".inputNumber").on('input', function() {
+            let id=this.id;
+            let p_id=id.slice(8,id.length);
+            let price=$("#productPrice"+p_id).text();
+            let total=0;
+            price=price.slice(1,price.length);
+            $("#totalPrice"+p_id).html('$'+(price*$("#"+id).val()).toFixed(2));
+            $("#cart_table tbody tr").each(function() {
+                var value = $(this).find(" td:nth-child(6)").html();
+                value=value.slice(1,value.length);
+                total = total + parseInt(value) ;
+            });
+            $("#subTotal").html(total);
+            $("#ship").html(Math.floor(total*0.02));
+            $("#total").html(total+Math.floor(total*0.02));
+            console.log(total);
+        });
         // Delete one row from table cart
         $(".del").click(function (){
             var idd=this.id;
